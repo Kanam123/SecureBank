@@ -9,7 +9,7 @@ import {
 const userNav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/accounts", label: "Accounts", icon: Wallet },
-  { to: "/banking", label: "Deposit / Withdraw / Transfer", icon: ArrowLeftRight },
+  { to: "/banking", label: "Banking", icon: ArrowLeftRight },
   { to: "/transactions", label: "Transactions", icon: Receipt },
   { to: "/beneficiaries", label: "Beneficiaries", icon: Users2 },
   { to: "/profile", label: "Profile", icon: UserCog },

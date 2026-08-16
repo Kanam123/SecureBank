@@ -1,0 +1,36 @@
+{
+  "summary": "Full regression on FastAPI-migrated SecureBank. Backend 26/27 pytest passes; frontend flows (login, dashboard, banking, transactions filter, beneficiaries via API, profile update, admin console, RBAC, unauth redirect) all work. One functional bug: deposit >=100000 is scored as MEDIUM instead of HIGH, contradicting the fraud-detection spec.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/transactions/deposit", "issue": "assess_risk() gives score=3 for amount>=100000 (needs >=4 for HIGH), so a plain 1,20,000 deposit returns riskLevel=MEDIUM. Spec says '>=100000 HIGH'. Bump the >=100000 branch to score+=4 (or level='HIGH' directly)."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {"flow": "Banking deposit risk badge", "issue": "Large deposits of 1,50,000 show a MEDIUM badge instead of HIGH in the result panel — mirrors backend bug above.", "affected_selectors": ["banking-submit-button"]}
+    ],
+    "design_issues": [
+      {"screen": "Sidebar", "issues": ["'Deposit / Withdraw / Transfer' link label is truncated to 'Deposit / Withdraw / Tra...' on 1920px viewport — consider wider sidebar or shorter label like 'Banking'."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Fix assess_risk() so amount>=100000 alone => HIGH (currently only MEDIUM). Options: score+=4 in that branch, or short-circuit level='HIGH'.",
+    "Optional: shorten sidebar label 'Deposit / Withdraw / Transfer' to avoid truncation."
+  ],
+  "critical_code_review_comments": [
+    "server.py assess_risk() thresholds don't match the documented fraud spec; unit-test HIGH threshold.",
+    "CORS is configured with allow_credentials=False and allow_origins from env — OK for JWT-in-header, but confirm production CORS_ORIGINS is set (defaults to '*').",
+    "Startup uses @app.on_event('startup') which is deprecated in FastAPI; migrate to lifespan handler."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "96% (26/27)", "frontend": "100% of tested flows"},
+  "seed_data_creation": "Registered a few TEST_* users via API for transfer/beneficiary/suspend flows; profile of demo user updated (phone 8888888888, address 'TEST addr').",
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_self_test": true,
+  "test_credentials": "Admin kanamkhushikumari1@gmail.com/Admin@12345, Demo demo@securebank.com/User@12345 — both work.",
+  "context_for_next_testing_agent": "Backend pytest suite at /app/backend/tests/backend_test.py has been rewritten for FastAPI (uses response['message'] error shape and Bearer token). Only one failing test: TestBanking::test_deposit_high_risk — asserts riskLevel=='HIGH' for a 120000 deposit; fails because assess_risk scoring caps at MEDIUM. After the main agent fixes the threshold, re-run pytest and verify the deposit result banner in /banking also shows a HIGH badge.",
+  "rca_of_the_issue": "In server.py assess_risk(): amount>=100000 adds score 3, and level='HIGH' requires score>=4. So a large-but-otherwise-clean deposit reaches only MEDIUM. Spec ('>=50000 MEDIUM, >=100000 HIGH') and seed data (force_risk='HIGH' for the 1,50,000 demo txn) both indicate the intent is HIGH for >=1,00,000. Fix: change 'score += 3' to 'score += 4' on that branch, or set level directly."
+}
