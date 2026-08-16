@@ -1,0 +1,99 @@
+{
+  "theme": {
+    "mode": "light",
+    "description": "Premium Fintech & Banking Dashboard. Emphasizes authority, trust, and clarity through a hybrid of 'Organic & Earthy' (Wealth) and 'Swiss High-Contrast'. The interface is primarily crisp off-white with dark emerald green accents to convey financial security."
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Manrope",
+      "body": "IBM Plex Sans"
+    },
+    "instructions": "Use Manrope for all headings (H1-H6) with tight letter spacing (tracking-tight) to give a modern, structured look. Use IBM Plex Sans for all body text, tables, numbers, and currency (INR ₹), as it has excellent tabular lining features perfect for financial data. NEVER use Inter."
+  },
+  "colors": {
+    "background": "#F9FAFB",
+    "surface": "#FFFFFF",
+    "primary": "#064E3B",
+    "primary_hover": "#047857",
+    "accent": "#D97706",
+    "text_main": "#111827",
+    "text_muted": "#4B5563",
+    "border": "#E5E7EB",
+    "risk_badges": {
+      "LOW": {
+        "bg": "#D1FAE5",
+        "text": "#065F46",
+        "border": "#A7F3D0"
+      },
+      "MEDIUM": {
+        "bg": "#FEF3C7",
+        "text": "#92400E",
+        "border": "#FDE68A"
+      },
+      "HIGH": {
+        "bg": "#FEE2E2",
+        "text": "#991B1B",
+        "border": "#FECACA"
+      }
+    }
+  },
+  "visual_enhancers": {
+    "shadows": "Rely heavily on 1px solid borders (border-gray-200) rather than large muddy shadows. Use subtle shadow-sm for cards to lift them slightly off the #F9FAFB background. Use shadow-lg for dropdowns/modals.",
+    "borders": "rounded-xl for large containers (cards, modals), rounded-md for interactive elements (buttons, inputs). All cards should have a delicate 1px border.",
+    "glassmorphism": "For sticky headers or floating navs, use bg-white/80 with backdrop-blur-xl and a subtle border-b border-gray-200. NEVER use completely transparent backgrounds over content."
+  },
+  "components": {
+    "buttons": "Primary buttons: bg-[#064E3B] text-white hover:bg-[#047857]. Shape: rounded-lg. Add micro-interaction: active:scale-[0.98] transition-transform.",
+    "inputs": "Clean, structured inputs with white backgrounds, border-gray-300, and focus:ring-2 focus:ring-[#064E3B]/20. No floating labels; use clear, strong labels above inputs.",
+    "cards": "Dashboard widgets should be card-based with p-6 or p-8 padding to ensure breathing room. No generic gradients inside data cards.",
+    "tables": "Crucial for banking: Data tables must have left-aligned text and right-aligned currency values. Use subtle striped rows (even:bg-gray-50) or distinct bottom borders (border-b border-gray-100) per row. High contrast header row (e.g., bg-gray-50 text-gray-700 font-semibold)."
+  },
+  "layouts": {
+    "dashboard": "High Density Dashboard Grid. Use a dark sidebar (bg-slate-900 text-white) to create a striking contrast against the light main content area (bg-[#F9FAFB]). The main area should use a Bento Grid approach for summary metrics.",
+    "auth": "Split-screen layout for login/register. Left side: Full-bleed architectural/finance image with a bg-black/40 overlay. Right side: Clean, centered, heavily padded white login form container.",
+    "spacing": "Generous Spacing Philosophy. Use p-6, p-8 for card internals. gap-6 or gap-8 for dashboard grids."
+  },
+  "motion": {
+    "interactions": "Provide immediate visual feedback. Hover states on table rows (hover:bg-gray-50). Button scale down on click.",
+    "charts": "Use Recharts. Animate line drawing and bar growth on load for a polished feel.",
+    "restrictions": "DO NOT use 'transition-all'. Specify properties (e.g., transition-colors, transition-transform) to prevent transform breakage."
+  },
+  "accessibility": {
+    "contrast": "Ensure all text meets APCA/WCAG standards. Do not use pale gray text on white backgrounds.",
+    "testing": "All interactive elements, forms, and key data points MUST include a 'data-testid' attribute (e.g., data-testid='transfer-submit-button', data-testid='user-balance').",
+    "focus": "Clear focus rings on all focusable elements (focus:ring-2 focus:ring-emerald-700 focus:outline-none)."
+  },
+  "media": {
+    "icons": "Use 'lucide-react' for clean, consistent standard icons.",
+    "charts": "Use 'recharts'. LineChart for monthly transaction trends (smooth curve, deep green line). BarChart for transaction types."
+  },
+  "image_urls": {
+    "login_hero": {
+      "url": "https://images.unsplash.com/photo-1574848296471-28f79a036f79?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBiYW5rJTIwYnVpbGRpbmclMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzg2ODg1ODgxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Modern high-rise bank architecture. Use for Auth layout split-screen background."
+    },
+    "security_vault": {
+      "url": "https://images.unsplash.com/photo-1582139329536-e7284fece509?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxzZWN1cmUlMjB2YXVsdHxlbnwwfHx8fDE3ODY4ODU4ODF8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Secure vault knob. Use for security/admin layout flair or empty states for locked accounts."
+    },
+    "abstract_data": {
+      "url": "https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGZpbmFuY2V8ZW58MHx8fHwxNzg2ODg1ODgxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract blue data background. Can be used for admin dashboard hero or transaction analysis headers."
+    }
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy (using shadows and crisp borders).",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) where appropriate, but NEVER use completely transparent backgrounds where content sits below.",
+    "You MUST NOT apply universal transition (e.g., transition: all). It breaks transforms.",
+    "You MUST NOT center align the app container (.App { text-align: center; }).",
+    "NEVER use AI assistant Emoji characters (like robot, brain, lightbulb) for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Use .js/.jsx extensions for React files. Do not use .tsx.",
+    "Use standard HTML inputs for basic forms, but Shadcn UI components for complex interactions. Customize them with Tailwind.",
+    "Currency must be formatted in INR (₹) and numbers styled nicely with IBM Plex Sans.",
+    "Ensure all interactive and key informational elements have a 'data-testid' attribute for robust automated testing."
+  ]
+}
