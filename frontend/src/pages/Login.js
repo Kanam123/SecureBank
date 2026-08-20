@@ -126,12 +126,6 @@ export default function Login() {
               Create an account
             </Link>
           </p>
-
-          <div className="mt-6 rounded-lg border border-border bg-secondary/50 p-4 text-xs text-muted-foreground">
-            <p className="font-semibold text-foreground">Demo credentials</p>
-            <p className="mt-1">User — demo@securebank.com / User@12345</p>
-            <p>Admin — kanamkhushikumari1@gmail.com / Admin@12345</p>
-          </div>
         </div>
       </div>
     </div>
